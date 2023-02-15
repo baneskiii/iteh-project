@@ -14,16 +14,16 @@ class Proizvod extends Model
         'proizvodjac',
         'cena',
         'kolicina',
-        'vrsta',
+        'kategorija',
         'zemlja_porekla'
       ];
  
 
 
 
-    public function vrsta()
+    public function kategorija()
     {
-       return $this->belongsTo(Vrsta::class);
+       return $this->belongsTo(Kategorija::class);
     }
     public function stavke()
     {
