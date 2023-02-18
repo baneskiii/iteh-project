@@ -3,10 +3,15 @@ import Footer from './Components/Footer';
 import NavBar from './Components/NavBar';
 import Pocetna from './Components/Pocetna';
 import Login  from './Components/Login';
-import Registracija from './Components/Registracija'
+import Register from './Components/Register'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Oprema from './Components/Oprema';
 
+const axiosInstance = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
 
 
 function App() {
@@ -15,16 +20,35 @@ function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [sum, setSumPrice] = useState(0); 
   const [oprema, setOprema] = useState([ ]); 
-
+  useEffect(() => {
+    const getRandomLists = async () => {
+      try {
+        const res = await axiosInstance.get( "http://127.0.0.1:8000/api/oprema",
+          {
+            headers: {
+              token:
+                "Bearer " +
+                ( window.sessionStorage.getItem("auth_token")),
+            },
+          }
+        );
+        setOprema(res.data.data);
+        console.log(res.data.data)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getRandomLists();
+  }, [ axiosInstance]);
   function addToken(auth_token){
     setToken(auth_token);
 }
 function refreshCart() {
-  let u_korpi = oprema.filter((o) => o.amount > 0);
+  let u_korpi = oprema.filter((o) => o.kolicina > 0);
   setCartProducts(u_korpi);
   var suma=0;
   cartProducts.forEach((o)=>{
-    suma+=o.price*o.amount;
+    suma+=o.cena*o.kolicina;
   })
   setSumPrice(suma);
 }
@@ -45,8 +69,8 @@ function addProduct( id) {
 
   oprema.forEach((o) => {
     if (o.id === id) {
-      o.amount++;
-      setSumPrice(sum+o.price);
+      o.kolicina++;
+      setSumPrice(sum+o.cena);
     }
   });
   refreshCart();
@@ -60,10 +84,10 @@ function removeProduct( id) {
     setCartNum(cartNum - 1);
     oprema.forEach((o) => {
       if (o.id === id) {
-        if(o.amount === 0){
+        if(o.kolicina === 0){
           return;
         }else{
-          o.amount--; 
+          o.kolicina--; 
         }
       }
     });
@@ -78,7 +102,7 @@ function removeProduct( id) {
     <Routes>
             <Route path="/" element={ <Pocetna></Pocetna>}></Route>
             <Route path="/Login" element={ <Login  addToken={addToken}  ></Login>}></Route>
-            <Route path="/Registracija" element={ <Registracija ></Registracija>}></Route>
+            <Route path="/Register" element={ <Register ></Register>}></Route>
         </Routes>
     <Footer></Footer>
     </BrowserRouter>

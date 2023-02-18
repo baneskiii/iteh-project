@@ -62,13 +62,13 @@ function Login({addToken}) {
                                 </div>
 
                                 <div className="input-group">
-                                    <input className="input--style-3" type="password" placeholder="Lozinka" name="lozinka"  onInput={handleInput}/>
+                                    <input className="input--style-3" type="password" placeholder="Password" name="password"  onInput={handleInput}/>
                                 </div>
                                 <div className="p-t-10">
                                     <button className="btn btn--pill btn--green" type="submit" id="login" name="login">Potvrdi</button>
                                 </div>
                                 <br/><br/>
-                                <p><a href="/Registracija"  className='tekstForme'>Zdravo</a></p>
+                                <p><a href="/Register"  className='tekstForme'>Zdravo</a></p>
                         </form>
                     </div>
                 </div>

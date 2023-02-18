@@ -24,7 +24,7 @@ function NavBar({token}) {
                     <Link className="nav-link" to="/Login">Uloguj se  </Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/Registracija">Registruj se  </Link>
+                    <Link className="nav-link" to="/Register">Registruj se  </Link>
                 </li>
                 </>
                 :

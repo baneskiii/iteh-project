@@ -28,7 +28,7 @@ function Register() {
                 .then((res)=>{  
                     console.log(res.data);
                
-                     navigate("/login");
+                     navigate("/Login");
                 })
                 .catch(function (error) {
                     if (error.response) {
@@ -56,10 +56,10 @@ function Register() {
                                 <h2 className="title">Registruj se</h2>
                                 <form onSubmit={handleRegister}>
                                     <div className="input-group">
-                                        <input className="input--style-3" type="text" placeholder="Ime" name="ime" required onInput={handleInput}/>
+                                        <input className="input--style-3" type="text" placeholder="Name" name="name" required onInput={handleInput}/>
                                     </div>
                                     <div className="input-group">
-                                        <input className="input--style-3 js-datepicker" type="text" placeholder="Rođendan" name="Rođendan"required onInput={handleInput}/>
+                                        <input className="input--style-3 js-datepicker" type="text" placeholder="Birthday" name="birthday"required onInput={handleInput}/>
                                         <i className="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
 
@@ -68,10 +68,10 @@ function Register() {
                                     </div>
 
                                     <div className="input-group">
-                                        <input className="input--style-3" type="text" placeholder="Telefon" name="Telefon"required onInput={handleInput}/>
+                                        <input className="input--style-3" type="text" placeholder="Phone" name="phone"required onInput={handleInput}/>
                                     </div>
                                     <div className="input-group">
-                                        <input className="input--style-3" type="password" placeholder="Lozinka" name="Lozinka"required onInput={handleInput}/>
+                                        <input className="input--style-3" type="password" placeholder="Password" name="password"required onInput={handleInput}/>
                                     </div>
                                     <div className="p-t-10">
                                         <button className="btn btn--pill btn--green" type="submit" id="register" name="register" >Potvrdi</button>
@@ -88,4 +88,4 @@ function Register() {
     );
 }
 
-export default Register;
+export default Register

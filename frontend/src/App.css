@@ -629,4 +629,16 @@
     height:300px;
     width: auto;
   } 
+  .svaOprema{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  
+  
+     margin-left: 9%;
+     margin-right:9%;
+     margin-top: 0;
+    justify-content: space-between;
+  }
 }
