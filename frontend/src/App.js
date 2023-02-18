@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar';
 import Pocetna from './Components/Pocetna';
 import Login  from './Components/Login';
 import Register from './Components/Register'
+import Korpa from './Components/Korpa';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -23,7 +24,7 @@ function App() {
   useEffect(() => {
     const getRandomLists = async () => {
       try {
-        const res = await axiosInstance.get( "http://127.0.0.1:8000/api/oprema",
+        const res = await axiosInstance.get( "http://127.0.0.1:8000/api/proizvod",
           {
             headers: {
               token:
@@ -64,13 +65,14 @@ function jeUKorpi(id){
   return postoji;
 }
 function addProduct( id) {
-
+  console.log(id);
   setCartNum(cartNum + 1);
 
   oprema.forEach((o) => {
     if (o.id === id) {
       o.kolicina++;
       setSumPrice(sum+o.cena);
+      console.log(sum);
     }
   });
   refreshCart();
@@ -103,6 +105,8 @@ function removeProduct( id) {
             <Route path="/" element={ <Pocetna></Pocetna>}></Route>
             <Route path="/Login" element={ <Login  addToken={addToken}  ></Login>}></Route>
             <Route path="/Register" element={ <Register ></Register>}></Route>
+            <Route path="/Oprema" element={ <Oprema oprema={oprema} onAdd={addProduct} onRemove={removeProduct} ></Oprema>}></Route>
+            <Route path="/Korpa" element={ <Korpa oprema={cartProducts} onAdd={addProduct} onRemove={removeProduct} ></Korpa>}></Route>
         </Routes>
     <Footer></Footer>
     </BrowserRouter>

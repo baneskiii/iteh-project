@@ -20,13 +20,13 @@ function Oprema({oprema,onAdd,onRemove }) {
             {sort===true?
               <>
                 {oprema
-                     .sort((a, b) => a.price < b.price ? -1 : 1)
+                     .sort((a, b) => a.cena < b.cena ? -1 : 1)
                     .map((t)=>(<OpremaKartica key={t.id} product={t}  onAdd={onAdd} onRemove={onRemove} ></OpremaKartica>))}
               </>
               :
               <>
                 {oprema
-                     .sort((a, b) => a.price > b.price ? -1 : 1)
+                     .sort((a, b) => a.cena> b.cena ? -1 : 1)
                     .map((t)=>(<OpremaKartica key={t.id} product={t}  onAdd={onAdd} onRemove={onRemove}></OpremaKartica>))}
               </>
             }
