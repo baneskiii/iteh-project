@@ -3,12 +3,13 @@ import Footer from './Components/Footer';
 import NavBar from './Components/NavBar';
 import Pocetna from './Components/Pocetna';
 import Login  from './Components/Login';
-import Register from './Components/Register'
+import Register from './Components/Register';
 import Korpa from './Components/Korpa';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Oprema from './Components/Oprema';
+import './Components/LoginRegister.css';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -40,17 +41,18 @@ function App() {
       }
     };
     getRandomLists();
-  }, [ axiosInstance]);
+  }, [axiosInstance]);
   function addToken(auth_token){
     setToken(auth_token);
 }
 function refreshCart() {
   let u_korpi = oprema.filter((o) => o.kolicina > 0);
   setCartProducts(u_korpi);
-  var suma=0;
+  var suma= 0;
   cartProducts.forEach((o)=>{
     suma+=o.cena*o.kolicina;
   })
+  console.log(suma);
   setSumPrice(suma);
 }
 function jeUKorpi(id){
@@ -71,7 +73,7 @@ function addProduct( id) {
   oprema.forEach((o) => {
     if (o.id === id) {
       o.kolicina++;
-      setSumPrice(sum+o.cena);
+     
       console.log(sum);
     }
   });
@@ -106,7 +108,7 @@ function removeProduct( id) {
             <Route path="/Login" element={ <Login  addToken={addToken}  ></Login>}></Route>
             <Route path="/Register" element={ <Register ></Register>}></Route>
             <Route path="/Oprema" element={ <Oprema oprema={oprema} onAdd={addProduct} onRemove={removeProduct} ></Oprema>}></Route>
-            <Route path="/Korpa" element={ <Korpa oprema={cartProducts} onAdd={addProduct} onRemove={removeProduct} ></Korpa>}></Route>
+            <Route path="/Korpa" element={ <Korpa oprema={cartProducts} onAdd={addProduct} onRemove={removeProduct} sum={sum} ></Korpa>}></Route>
         </Routes>
     <Footer></Footer>
     </BrowserRouter>

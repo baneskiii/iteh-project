@@ -47,24 +47,25 @@ function Register() {
                   });
     }
     return (
-        <div className='register'>
-            <div className="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
-                <div className="wrapper wrapper--w780">
-                    <div className="card card-3">
-                        <div className="card-heading"></div>
-                            <div className="card-body">
+        <div id='kontakt' >
+            <div id='container1'>
+                <div id='contact-box'>
+                    <div id="left">
+
+                    </div>
+                    <div id="right">
                                 <h2 className="title">Registruj se</h2>
                                 <form onSubmit={handleRegister}>
                                     <div className="input-group">
                                         <input className="input--style-3" type="text" placeholder="Name" name="name" required onInput={handleInput}/>
                                     </div>
                                     <div className="input-group">
-                                        <input className="input--style-3 js-datepicker" type="text" placeholder="Birthday" name="birthday"required onInput={handleInput}/>
+                                        <input className="input--style-3 js-datepicker" type="text" placeholder="Birthdate" name="birthdate"required onInput={handleInput}/>
                                         <i className="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
 
                                     <div className="input-group">
-                                        <input className="input--style-3" type="email" placeholder="Email" name="Email" id="emailR"  required onInput={handleInput}/>
+                                        <input className="input--style-3" type="email" placeholder="Email" name="email" id="emailR"  required onInput={handleInput}/>
                                     </div>
 
                                     <div className="input-group">
@@ -74,7 +75,7 @@ function Register() {
                                         <input className="input--style-3" type="password" placeholder="Password" name="password"required onInput={handleInput}/>
                                     </div>
                                     <div className="p-t-10">
-                                        <button className="btn btn--pill btn--green" type="submit" id="register" name="register" >Potvrdi</button>
+                                        <button className="btn btn--pill btn--green" type="submit" id="register" name="register" > Potvrdi </button>
                                     </div>
                                     <br/><br/>
                                     <p><a href="/Login"  className='tekstForme'>Već postoji nalog</a></p>
@@ -83,9 +84,8 @@ function Register() {
                         </div>
                     </div>
                 </div>
-            </div>
 
     );
 }
 
-export default Register
+export default Register;
