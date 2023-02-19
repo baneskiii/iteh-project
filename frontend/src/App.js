@@ -7,6 +7,7 @@ import Register from "./Components/Register";
 import Korpa from "./Components/Korpa";
 import Kontakt from "./Components/Kontakt";
 import Inbox from "./Components/Inbox";
+import AdminView from "./Components/AdminView";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -65,6 +66,7 @@ function App() {
   function handleLogout() {
     window.sessionStorage.setItem("auth_token", null);
     window.sessionStorage.setItem("auth_name", null);
+    window.location("/");
   }
   function addToken(auth_token) {
     setToken(auth_token);
@@ -121,10 +123,7 @@ function App() {
   return (
     <div>
       <BrowserRouter className="App">
-        <NavBar>
-          {" "}
-          token = {token} logout={handleLogout}
-        </NavBar>
+        <NavBar token={token} logout={handleLogout}></NavBar>
         <Routes>
           <Route path="/" element={<Pocetna></Pocetna>}></Route>
           <Route
@@ -155,9 +154,10 @@ function App() {
           ></Route>
           <Route path="/kontakt" element={<Kontakt></Kontakt>}></Route>
           <Route
-            path="/inbox"
+            path="/admin/inbox"
             element={<Inbox poruke={poruke}></Inbox>}
           ></Route>
+          <Route path="/admin" element={<AdminView></AdminView>}></Route>
         </Routes>
         <Footer></Footer>
       </BrowserRouter>

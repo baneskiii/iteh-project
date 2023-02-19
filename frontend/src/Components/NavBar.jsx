@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 function NavBar({ token, logout }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="/">
         Vision Locker
       </a>
       <button
@@ -18,11 +18,6 @@ function NavBar({ token, logout }) {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <li className="nav-item active">
-            <Link className="nav-link" to="/">
-              Početna{" "}
-            </Link>
-          </li>
           {token == null ? (
             <>
               <li className="nav-item">
@@ -42,8 +37,11 @@ function NavBar({ token, logout }) {
                 <Link className="nav-link" to="/Oprema">
                   Ponuda{" "}
                 </Link>
-                <Link className="nav-link" to="/Korpa">
-                  Korpa{" "}
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="/korpa">
+                  Korpa
                 </Link>
               </li>
 
