@@ -18,20 +18,7 @@ function NavBar({ token, logout }) {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          {token === null ? (
-            <>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Login">
-                  Uloguj se{" "}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Register">
-                  Registruj se{" "}
-                </Link>
-              </li>
-            </>
-          ) : (
+          {token != null ? (
             <>
               <li className="nav-item">
                 <Link className="nav-link" to="/Admin">
@@ -53,6 +40,19 @@ function NavBar({ token, logout }) {
               <li className="nav-item active">
                 <Link className="nav-link" to="/" onClick={logout}>
                   Odjavi se{" "}
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Login">
+                  Uloguj se{" "}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Register">
+                  Registruj se{" "}
                 </Link>
               </li>
             </>

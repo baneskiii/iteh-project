@@ -9,6 +9,7 @@ import Kontakt from "./Components/Kontakt";
 import Inbox from "./Components/Inbox";
 import AdminView from "./Components/AdminView";
 import Promena from "./Components/Promena";
+import Analitika from "./Components/Analitika";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -206,6 +207,10 @@ function App() {
           <Route
             path="/admin/promeni"
             element={<Promena id={ID} kategorijaID={kategorijaID}></Promena>}
+          ></Route>
+          <Route
+            path="/admin/analitika"
+            element={<Analitika oprema={oprema}></Analitika>}
           ></Route>
         </Routes>
         <Footer></Footer>
