@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProizvodResource;
- 
+
 use App\Models\Proizvod;
- 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -42,34 +42,34 @@ class ProizvodController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'naziv' =>  'required' , 
-                'proizvodjac' => 'required|string|max:100', 
+                'naziv' => 'required',
+                'proizvodjac' => 'required|string|max:100',
                 'cena' => 'required',
-                'kategorija' => 'required'  ,
-                'zemlja_porekla'=>'required',
-                'image' =>'required'
+                'kategorija' => 'required',
+                'zemlja_porekla' => 'required',
+                'image' => 'required'
 
             ]
         );
-        if ($validator->fails()) 
+        if ($validator->fails())
             return response()->json($validator->errors());
 
 
-         
-            
+
+
 
         $p = Proizvod::create([
-                'naziv' =>   $request->naziv, 
-                'proizvodjac' => $request->proizvodjac, 
-                'cena' =>  $request->cena, 
-                'zemlja_porekla'=>$request->zemlja_porekla, 
-                'kolicina'=>0, 
+            'naziv' => $request->naziv,
+            'proizvodjac' => $request->proizvodjac,
+            'cena' => $request->cena,
+            'zemlja_porekla' => $request->zemlja_porekla,
+            'kolicina' => 0,
 
-                'kategorija' =>  $request->kategorija, 
-                'image' =>  $request->image
-           
+            'kategorija' => $request->kategorija,
+            'image' => $request->image
+
         ]);
-        return response()->json(["Uspesno kreiran proizvod",$p]);
+        return response()->json(["Uspesno kreiran proizvod", $p]);
     }
 
     /**
@@ -104,28 +104,28 @@ class ProizvodController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            
-             
+
+
         ]);
 
-        if ($validator->fails()) 
+        if ($validator->fails())
             return response()->json($validator->errors());
 
-        $l=Proizvod::find($request->id);
-        if($l){
+        $l = Proizvod::find($request->id);
+        if ($l) {
             $l->naziv = $request->naziv;
             $l->proizvodjac = $request->proizvodjac;
             $l->cena = $request->cena;
-            $l->kategorija  =1;
+            $l->kategorija = $request->kategorija;
             $l->image = $request->image;
-            $l->zemlja_porekla = $request->zemlja_porekla; 
-            $l->kolicina =0;
-           
+            $l->zemlja_porekla = $request->zemlja_porekla;
+            $l->kolicina = 0;
 
-            
+
+
             $l->save();
             return response()->json(['Proizvod uspesno izmenjen!', new ProizvodResource($l)]);
-        }else{
+        } else {
             return response()->json('Trazeni objekat ne postoji u bazi');
         }
     }
@@ -139,9 +139,9 @@ class ProizvodController extends Controller
     public function destroy($id)
     {
         $p = Proizvod::find($id);
-        if($p){ 
+        if ($p) {
             $p->delete();
-            return response()->json("uspesno obrisano!" );
+            return response()->json("uspesno obrisano!");
         } else {
 
             return response()->json([

@@ -18,7 +18,7 @@ function NavBar({ token, logout }) {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          {token == null ? (
+          {token === null ? (
             <>
               <li className="nav-item">
                 <Link className="nav-link" to="/Login">
@@ -33,6 +33,11 @@ function NavBar({ token, logout }) {
             </>
           ) : (
             <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/Admin">
+                  Svi proizvodi{" "}
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/Oprema">
                   Ponuda{" "}

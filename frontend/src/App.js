@@ -8,7 +8,8 @@ import Korpa from "./Components/Korpa";
 import Kontakt from "./Components/Kontakt";
 import Inbox from "./Components/Inbox";
 import AdminView from "./Components/AdminView";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Promena from "./Components/Promena";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Oprema from "./Components/Oprema";
@@ -25,6 +26,8 @@ function App() {
   const [sum, setSumPrice] = useState(0);
   const [oprema, setOprema] = useState([]);
   const [poruke, setPoruke] = useState([]);
+  const [ID, setID] = useState(0);
+  const [kategorijaID, setKategorijaID] = useState(0);
   useEffect(() => {
     const getRandomLists = async () => {
       try {
@@ -120,6 +123,39 @@ function App() {
       refreshCart();
     }
   }
+
+  function deleteOprema(id) {
+    axios
+      .delete("http://127.0.0.1:8000/api/proizvod/" + id, {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem(
+            "auth_token"
+          )}`,
+        },
+      })
+      .then((res) => {
+        const token = window.sessionStorage.getItem("auth_token");
+        window.location.reload();
+        window.sessionStorage.setItem("auth_token", token);
+      })
+      .catch(function (error) {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log("Error", error.message);
+        }
+      });
+  }
+
+  function IDIzmena(id, kategorijaID) {
+    setID(id);
+    setKategorijaID(kategorijaID);
+  }
+
   return (
     <div>
       <BrowserRouter className="App">
@@ -157,7 +193,20 @@ function App() {
             path="/admin/inbox"
             element={<Inbox poruke={poruke}></Inbox>}
           ></Route>
-          <Route path="/admin" element={<AdminView></AdminView>}></Route>
+          <Route
+            path="/admin"
+            element={
+              <AdminView
+                oprema={oprema}
+                deleteOprema={deleteOprema}
+                setID={IDIzmena}
+              ></AdminView>
+            }
+          ></Route>
+          <Route
+            path="/admin/promeni"
+            element={<Promena id={ID} kategorijaID={kategorijaID}></Promena>}
+          ></Route>
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
