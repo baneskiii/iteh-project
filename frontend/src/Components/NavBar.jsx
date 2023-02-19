@@ -1,7 +1,5 @@
-import axios from "axios";
 import { Link } from "react-router-dom";
-function NavBar({ token }) {
-  function odjava() {}
+function NavBar({ token, logout }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="#">
@@ -50,7 +48,7 @@ function NavBar({ token }) {
               </li>
 
               <li className="nav-item active">
-                <Link className="nav-link" to="/" onClick={odjava}>
+                <Link className="nav-link" to="/" onClick={logout}>
                   Odjavi se{" "}
                 </Link>
               </li>

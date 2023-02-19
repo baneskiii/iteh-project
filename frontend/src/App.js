@@ -62,6 +62,10 @@ function App() {
     };
     getRandomLists2();
   }, [axiosInstance]);
+  function handleLogout() {
+    window.sessionStorage.setItem("auth_token", null);
+    window.sessionStorage.setItem("auth_name", null);
+  }
   function addToken(auth_token) {
     setToken(auth_token);
   }
@@ -117,7 +121,10 @@ function App() {
   return (
     <div>
       <BrowserRouter className="App">
-        <NavBar> token = {token}</NavBar>
+        <NavBar>
+          {" "}
+          token = {token} logout={handleLogout}
+        </NavBar>
         <Routes>
           <Route path="/" element={<Pocetna></Pocetna>}></Route>
           <Route
