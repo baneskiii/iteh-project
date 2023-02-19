@@ -6,6 +6,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Korpa from "./Components/Korpa";
 import Kontakt from "./Components/Kontakt";
+import Inbox from "./Components/Inbox";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -22,6 +23,7 @@ function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [sum, setSumPrice] = useState(0);
   const [oprema, setOprema] = useState([]);
+  const [poruke, setPoruke] = useState([]);
   useEffect(() => {
     const getRandomLists = async () => {
       try {
@@ -40,6 +42,25 @@ function App() {
       }
     };
     getRandomLists();
+  }, [axiosInstance]);
+  useEffect(() => {
+    const getRandomLists2 = async () => {
+      try {
+        const res = await axiosInstance.get(
+          "http://127.0.0.1:8000/api/poruke",
+          {
+            headers: {
+              token: "Bearer " + window.sessionStorage.getItem("auth_token"),
+            },
+          }
+        );
+        setPoruke(res.data);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getRandomLists2();
   }, [axiosInstance]);
   function addToken(auth_token) {
     setToken(auth_token);
@@ -126,6 +147,10 @@ function App() {
             }
           ></Route>
           <Route path="/kontakt" element={<Kontakt></Kontakt>}></Route>
+          <Route
+            path="/inbox"
+            element={<Inbox poruke={poruke}></Inbox>}
+          ></Route>
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
