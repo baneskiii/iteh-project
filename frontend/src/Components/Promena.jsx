@@ -83,98 +83,97 @@ function Promena({ id, kategorijaID }) {
       });
   }
   return (
-    <div className="login">
-      <div className="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
-        <div className="wrapper wrapper--w780">
-          <div className="card card-3">
-            <div className="card-heading"></div>
-            <div className="card-body">
-              <form onSubmit={promeni}>
-                <div className="input-group">
-                  <input
-                    className="input--style-3"
-                    type="text"
-                    placeholder="Naziv"
-                    name="naziv"
-                    onInput={handleInput}
-                    defaultValue={opremaData.naziv}
-                  />
-                </div>
+    <div id="kontakt">
+      <div id="container1">
+        <div id="contact-box">
+          <div id="left"></div>
+          <div id="right">
+            <h2>Izmeni</h2>
+            <form onSubmit={promeni}>
+              <div className="input-group">
+                <input
+                  className="input--style-3"
+                  type="text"
+                  placeholder="Naziv"
+                  name="naziv"
+                  onInput={handleInput}
+                  defaultValue={opremaData.naziv}
+                />
+              </div>
 
-                <div className="input-group">
-                  <input
-                    className="input--style-3"
-                    type="text"
-                    placeholder="Proizvodjac"
-                    name="proizvodjac"
-                    onInput={handleInput}
-                    defaultValue={opremaData.proizvodjac}
-                  />
-                </div>
-                <div className="input-group">
-                  <input
-                    className="input--style-3"
-                    type="text"
-                    placeholder="Cena"
-                    name="cena"
-                    onInput={handleInput}
-                    defaultValue={opremaData.cena}
-                  />
-                </div>
-                <div className="input-group">
-                  <input
-                    className="input--style-3"
-                    type="text"
-                    placeholder="Slika (URL)"
-                    name="image"
-                    onInput={handleInput}
-                    defaultValue={opremaData.image}
-                  />
-                </div>
+              <div className="input-group">
+                <input
+                  className="input--style-3"
+                  type="text"
+                  placeholder="Proizvodjac"
+                  name="proizvodjac"
+                  onInput={handleInput}
+                  defaultValue={opremaData.proizvodjac}
+                />
+              </div>
+              <div className="input-group">
+                <input
+                  className="input--style-3"
+                  type="text"
+                  placeholder="Cena"
+                  name="cena"
+                  onInput={handleInput}
+                  defaultValue={opremaData.cena}
+                />
+              </div>
+              <div className="input-group">
+                <input
+                  className="input--style-3"
+                  type="text"
+                  placeholder="Slika (URL)"
+                  name="image"
+                  onInput={handleInput}
+                  defaultValue={opremaData.image}
+                />
+              </div>
 
-                <div>
-                  <select
-                    className="input--style-3"
-                    name="kategorija"
-                    id="kategorija"
-                    defaultValue={opremaData.kategorija.id}
-                    onInput={handleInput}
-                  >
-                    <option className="input--style-3" value="1" id={1}>
-                      Patike
-                    </option>
-                    <option className="input--style-3" value="2" id={2}>
-                      Dukserica
-                    </option>
-                    <option className="input--style-3" value="3" id={3}>
-                      Jakna
-                    </option>
+              <div>
+                <select
+                  className="input--style-3"
+                  name="kategorija"
+                  id="kategorija"
+                  defaultValue={opremaData.kategorija.id}
+                  onInput={handleInput}
+                >
+                  <option className="input--style-3" value="1" id={1}>
+                    Patike
+                  </option>
+                  <option className="input--style-3" value="2" id={2}>
+                    Dukserica
+                  </option>
+                  <option className="input--style-3" value="3" id={3}>
+                    Jakna
+                  </option>
 
-                    <option className="input--style-3" value="4" id={4}>
-                      Lopta
-                    </option>
+                  <option className="input--style-3" value="4" id={4}>
+                    Lopta
+                  </option>
 
-                    <option className="input--style-3" value="5" id={5}>
-                      Majica
-                    </option>
+                  <option className="input--style-3" value="5" id={5}>
+                    Majica
+                  </option>
 
-                    <option className="input--style-3" value="6" id={6}>
-                      Trenerka
-                    </option>
-                  </select>
-                </div>
-                <div className="p-t-10">
-                  <button
-                    className="btn btn--pill btn--green"
-                    type="submit"
-                    id="login"
-                    name="login"
-                  >
-                    Potvrdi
-                  </button>
-                </div>
-              </form>
-            </div>
+                  <option className="input--style-3" value="6" id={6}>
+                    Trenerka
+                  </option>
+                </select>
+              </div>
+              <div className="p-t-10">
+                <button
+                  className="btn btn--pill btn--green"
+                  type="submit"
+                  id="login"
+                  name="login"
+                >
+                  Potvrdi
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

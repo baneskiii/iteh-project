@@ -79,9 +79,17 @@ function App() {
     let u_korpi = oprema.filter((o) => o.kolicina > 0);
     setCartProducts(u_korpi);
     var suma = 0;
-    cartProducts.forEach((o) => {
-      suma += o.cena * o.kolicina;
-    });
+    if (u_korpi.length === 1) {
+      suma = u_korpi[0].cena * u_korpi[0].kolicina;
+    } else {
+      for (var x = 0; x < u_korpi.length; x++) {
+        suma += u_korpi[x].cena * u_korpi[x].kolicina;
+      }
+      /*cartProducts.forEach((o) => {
+        suma += o.cena * o.kolicina;
+      });*/
+    }
+
     console.log(suma);
     setSumPrice(suma);
   }
@@ -164,12 +172,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Pocetna></Pocetna>}></Route>
           <Route
-            path="/Login"
+            path="/login"
             element={<Login addToken={addToken}></Login>}
           ></Route>
-          <Route path="/Register" element={<Register></Register>}></Route>
+          <Route path="/register" element={<Register></Register>}></Route>
           <Route
-            path="/Oprema"
+            path="/oprema"
             element={
               <Oprema
                 oprema={oprema}
@@ -179,7 +187,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/Korpa"
+            path="/korpa"
             element={
               <Korpa
                 oprema={cartProducts}

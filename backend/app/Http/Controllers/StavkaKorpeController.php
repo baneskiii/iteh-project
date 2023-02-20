@@ -34,36 +34,36 @@ class StavkaKorpeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request )
+    public function store(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'korpa_id' =>  'required' , 
-                'proizvod_id' => 'required',  
-                'kolicina' => 'required'  ,
-                 
+                'korpa_id' => 'required',
+                'proizvod_id' => 'required',
+                'kolicina' => 'required',
 
             ]
         );
-        if ($validator->fails()) 
+        if ($validator->fails())
             return response()->json($validator->errors());
 
 
-         
-            
+
+
 
         $p = StavkaKorpe::create([
-                'korpa_id' =>   $request->korpa_id, 
-                'proizvod_id' => $request->proizvod_id,  
-                'kolicina'=>$request->kolicina, 
-                 
+            'korpa_id' => $request->korpa_id,
+            'proizvod_id' => $request->proizvod_id,
+            'kolicina' => $request->kolicina,
 
-                
-           
+
+
+
         ]);
-        return response()->json(["Uspesno kreirana stavka",$p]);
-;    }
+        return response()->json(["Uspesno kreirana stavka", $p]);
+        ;
+    }
 
     /**
      * Display the specified resource.

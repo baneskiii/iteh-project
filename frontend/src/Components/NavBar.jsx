@@ -20,39 +20,55 @@ function NavBar({ token, logout }) {
         <ul className="navbar-nav">
           {token != null ? (
             <>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Admin">
-                  Svi proizvodi{" "}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/Oprema">
-                  Ponuda{" "}
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/korpa">
-                  Korpa
-                </Link>
-              </li>
+              {window.sessionStorage.getItem("auth_name") == "Admin" ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/admin">
+                      Admin
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/admin/inbox">
+                      Inbox
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/admin/analitika">
+                      Analitika
+                    </Link>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/oprema">
+                      Ponuda
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/korpa">
+                      Korpa
+                    </Link>
+                  </li>
+                </>
+              )}
 
               <li className="nav-item active">
                 <Link className="nav-link" to="/" onClick={logout}>
-                  Odjavi se{" "}
+                  Odjavi se
                 </Link>
               </li>
             </>
           ) : (
             <>
               <li className="nav-item">
-                <Link className="nav-link" to="/Login">
-                  Uloguj se{" "}
+                <Link className="nav-link" to="/login">
+                  Uloguj se
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Register">
-                  Registruj se{" "}
+                <Link className="nav-link" to="/register">
+                  Registruj se
                 </Link>
               </li>
             </>
@@ -60,7 +76,7 @@ function NavBar({ token, logout }) {
 
           <li className="nav-item active">
             <Link className="nav-link" to="/kontakt">
-              Kontakt{" "}
+              Kontakt
             </Link>
           </li>
         </ul>

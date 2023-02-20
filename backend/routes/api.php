@@ -19,30 +19,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 
-Route::post('kontakt', [PorukaController::class, 'primiPoruku']);
+Route::post('/kontakt', [PorukaController::class, 'primiPoruku']);
 
-Route::get('poruke', [PorukaController::class, 'index']);
-Route::resource('/korpe', KorpaController::class);
-Route::resource('/stavke', StavkaKorpeController::class);
-Route::get('proizvod', [ProizvodController::class, 'index']);
-Route::post('proizvod', [ProizvodController::class, 'store']);
-Route::put('proizvod/{id}', [ProizvodController::class, 'update']);
-Route::delete('proizvod/{id}', [ProizvodController::class, 'destroy']);
-Route::get('proizvod/{id}', [ProizvodController::class, 'show']);
-Route::group(['middleware' => ['auth:sanctum']], function () { //ulogovani korisnici
+Route::get('/poruke', [PorukaController::class, 'index']);
+
+Route::get('/proizvod', [ProizvodController::class, 'index']);
+Route::post('/proizvod', [ProizvodController::class, 'store']);
+Route::put('/proizvod/{id}', [ProizvodController::class, 'update']);
+Route::delete('/proizvod/{id}', [ProizvodController::class, 'destroy']);
+Route::get('/proizvod/{id}', [ProizvodController::class, 'show']);
+Route::resource('stavke', StavkaKorpeController::class);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get(
-        '/profiles',
+        '/profile',
         function (Request $request) {
             return auth()->user();
         }
     );
-    Route::resource('stavkeKorpe', StavkaKorpeController::class);
+    Route::resource('korpe', KorpaController::class);
 
-    Route::post('logout', [AuthController::class, 'logout']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {

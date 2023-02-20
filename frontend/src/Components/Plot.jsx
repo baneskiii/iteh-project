@@ -1,7 +1,7 @@
 import "./Plot.css";
 import {
   XYPlot,
-  LineSeries,
+  MarkSeries,
   XAxis,
   YAxis,
   VerticalGridLines,
@@ -18,16 +18,16 @@ function Plot({ oprema }) {
     <div>
       <h3>Ukupan broj proizvoda u ponudi: {oprema.length}</h3>
 
-      <div style={{ margin: "15px" }}>
+      <div style={{ margin: "20px" }}>
         <br />
         <br />
-        <h2>Najprodavanija oprema</h2>
-        <XYPlot height={300} width={600}>
+        <h2>Cene proizvoda</h2>
+        <XYPlot height={400} width={600}>
           <VerticalGridLines />
           <HorizontalGridLines />
           <XAxis />
           <YAxis />
-          <LineSeries data={data} color="red" />
+          <MarkSeries data={data} color="red" />
         </XYPlot>
       </div>
     </div>
