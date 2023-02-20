@@ -15,7 +15,7 @@ function Korpa({ oprema, onAdd, onRemove, sum }) {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://api.currencyapi.com/v3/latest?apikey=9xgGvwUIJx0wXksyKA7GRlTyjnpVTrgGwZ0iN6dZ&currencies=RSD&base_currency=EUR",
+      url: "https://api.currencyapi.com/v3/latest?apikey=LMBGzZb702eYKmMSKpHwBb8ojaw3EKxCOeAkIB1L&currencies=RSD&base_currency=EUR",
     })
       .then((response) => {
         console.log(response.data.data["RSD"].value);
@@ -31,7 +31,7 @@ function Korpa({ oprema, onAdd, onRemove, sum }) {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://api.currencyapi.com/v3/latest?apikey=9xgGvwUIJx0wXksyKA7GRlTyjnpVTrgGwZ0iN6dZ&currencies=RSD&base_currency=EUR",
+      url: "https://api.currencyapi.com/v3/latest?apikey=LMBGzZb702eYKmMSKpHwBb8ojaw3EKxCOeAkIB1L&currencies=RSD&base_currency=EUR",
     })
       .then((response) => {
         console.log(response.data.data["RSD"].value);
@@ -161,65 +161,73 @@ function Korpa({ oprema, onAdd, onRemove, sum }) {
   }
   return (
     <div>
-      <div className="korpa">
-        <br />
-        <br />
-        <br />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAZIV</th>
-              <th>CENA</th>
-              <th>KOLICINA</th>
-              <th>DODAJ</th>
-              <th>IZBACI</th>
-            </tr>
-          </thead>
-          <tbody>
-            {oprema.map((o, i) => (
-              <tr key={i}>
-                <td>{o.id}</td>
-                <td>{o.naziv}</td>
-                <td>{o.cena}</td>
-                <td>{o.kolicina}</td>
-                <td>
-                  <button className="btn" onClick={() => onAdd(o.id)}>
-                    <BsPlusLg />
-                  </button>
-                </td>
-                <td>
-                  <button className="btn" onClick={() => onRemove(o.id)}>
-                    <BsDashLg />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {window.sessionStorage.getItem("auth_name") == "" ? (
+        <>
+          <h1 style={{ color: "red" }}>Nemate pristup</h1>
+        </>
+      ) : (
+        <>
+          <div className="korpa">
+            <br />
+            <br />
+            <br />
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>NAZIV</th>
+                  <th>CENA</th>
+                  <th>KOLICINA</th>
+                  <th>DODAJ</th>
+                  <th>IZBACI</th>
+                </tr>
+              </thead>
+              <tbody>
+                {oprema.map((o, i) => (
+                  <tr key={i}>
+                    <td>{o.id}</td>
+                    <td>{o.naziv}</td>
+                    <td>{o.cena}</td>
+                    <td>{o.kolicina}</td>
+                    <td>
+                      <button className="btn" onClick={() => onAdd(o.id)}>
+                        <BsPlusLg />
+                      </button>
+                    </td>
+                    <td>
+                      <button className="btn" onClick={() => onRemove(o.id)}>
+                        <BsDashLg />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-        <div className="cenaDiv">
-          <h3>Ukupna cena proizvoda: {sum} RSD</h3>
-        </div>
-        <br />
-        <br />
-        <br />
-        <label htmlFor="currency">U kojoj valuti zelite racun </label>
+            <div className="cenaDiv">
+              <h3>Ukupna cena proizvoda: {sum} RSD</h3>
+            </div>
+            <br />
+            <br />
+            <br />
+            <label htmlFor="currency">U kojoj valuti zelite racun </label>
 
-        <select name="currency" id="currency">
-          <option value="RSD">RSD</option>
-          <option value="EUR">EUR</option>
-          <option value="USD">USD</option>
-        </select>
-        <div>
-          <button
-            className="btn btn--pill btn--green"
-            onClick={() => exportPDF()}
-          >
-            Generiši račun
-          </button>
-        </div>
-      </div>
+            <select name="currency" id="currency">
+              <option value="RSD">RSD</option>
+              <option value="EUR">EUR</option>
+              <option value="USD">USD</option>
+            </select>
+            <div>
+              <button
+                className="btn btn--pill btn--green"
+                onClick={() => exportPDF()}
+              >
+                Generiši račun
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

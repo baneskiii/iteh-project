@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 function Footer() {
   return (
     <footer className="site-footer">
@@ -32,16 +32,16 @@ function Footer() {
             <h6>Brzi linkovi</h6>
             <ul className="footer-links">
               <li>
-                <a href="/">Pocetna</a>
+                <Link to="/">Pocetna</Link>
               </li>
               <li>
-                <a href="/oprema">Ponuda</a>
+                <Link to="/oprema">Ponuda</Link>
               </li>
               <li>
-                <a href="/korpa">Korpa</a>
+                <Link to="/korpa">Korpa</Link>
               </li>
               <li>
-                <a href="/kontakt">Kontakt</a>
+                <Link to="/kontakt">Kontakt</Link>
               </li>
             </ul>
           </div>

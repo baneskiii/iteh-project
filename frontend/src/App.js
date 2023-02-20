@@ -69,7 +69,7 @@ function App() {
   }, [axiosInstance]);
   function handleLogout() {
     window.sessionStorage.setItem("auth_token", null);
-    window.sessionStorage.setItem("auth_name", null);
+    window.sessionStorage.setItem("auth_name", "");
     window.sessionStorage.setItem("auth_id", null);
     window.location("/");
   }
