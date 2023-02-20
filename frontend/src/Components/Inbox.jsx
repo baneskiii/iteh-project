@@ -1,9 +1,10 @@
+import React from "react";
 import { MDBDataTableV5 } from "mdbreact";
 import { useState } from "react";
-
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Inbox({ poruke }) {
+  var navigate = useNavigate();
   console.log(poruke);
   const [dataTable, setDataTable] = useState({
     columns: [
@@ -37,13 +38,21 @@ function Inbox({ poruke }) {
   });
   return (
     <div className="tabelaPoruka">
-      <MDBDataTableV5
-        hover
-        entriesOptions={[5, 20, 25]}
-        entries={5}
-        pagesAmount={4}
-        data={dataTable}
-      />
+      {window.sessionStorage.getItem("auth_name") == "Admin" ? (
+        <>
+          <MDBDataTableV5
+            hover
+            entriesOptions={[5, 20, 25]}
+            entries={5}
+            pagesAmount={4}
+            data={dataTable}
+          />
+        </>
+      ) : (
+        <>
+          <h1 style={{ color: "red" }}>Nemate pristup</h1>
+        </>
+      )}
     </div>
   );
 }

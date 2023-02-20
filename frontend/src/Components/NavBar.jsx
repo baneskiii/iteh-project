@@ -50,6 +50,11 @@ function NavBar({ token, logout }) {
                       Korpa
                     </Link>
                   </li>
+                  <li className="nav-item active">
+                    <Link className="nav-link" to="/kontakt">
+                      Kontakt
+                    </Link>
+                  </li>
                 </>
               )}
 
@@ -73,12 +78,6 @@ function NavBar({ token, logout }) {
               </li>
             </>
           )}
-
-          <li className="nav-item active">
-            <Link className="nav-link" to="/kontakt">
-              Kontakt
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>
