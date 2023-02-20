@@ -62,7 +62,7 @@ function Kontakt() {
                   onInput={handleInput}
                 ></textarea>
                 <button type="submit" className="btn btn-secondary">
-                  Posalji
+                  Pošalji
                 </button>
               </form>
             </div>

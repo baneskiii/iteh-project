@@ -31,7 +31,7 @@ function Korpa({ oprema, onAdd, onRemove, sum }) {
   useEffect(() => {
     axios({
       method: "GET",
-      url: "https://api.currencyapi.com/v3/latest?apikey=LMBGzZb702eYKmMSKpHwBb8ojaw3EKxCOeAkIB1L&currencies=RSD&base_currency=EUR",
+      url: "https://api.currencyapi.com/v3/latest?apikey=LMBGzZb702eYKmMSKpHwBb8ojaw3EKxCOeAkIB1L&currencies=RSD&base_currency=USD",
     })
       .then((response) => {
         console.log(response.data.data["RSD"].value);

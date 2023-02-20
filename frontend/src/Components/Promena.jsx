@@ -67,7 +67,6 @@ function Promena({ id, kategorijaID }) {
       .then((res) => {
         console.log(res.data);
         alert("Uspesna izmena");
-        window.location.reload();
       })
       .catch(function (error) {
         if (error.response) {

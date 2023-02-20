@@ -18,7 +18,20 @@ function NavBar({ token, logout }) {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          {token != null ? (
+          {window.sessionStorage.getItem("auth_name") == "" ? (
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Uloguj se
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/register">
+                  Registruj se
+                </Link>
+              </li>
+            </>
+          ) : (
             <>
               {window.sessionStorage.getItem("auth_name") == "Admin" ? (
                 <>
@@ -61,19 +74,6 @@ function NavBar({ token, logout }) {
               <li className="nav-item active">
                 <Link className="nav-link" to="/" onClick={logout}>
                   Odjavi se
-                </Link>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Uloguj se
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/register">
-                  Registruj se
                 </Link>
               </li>
             </>

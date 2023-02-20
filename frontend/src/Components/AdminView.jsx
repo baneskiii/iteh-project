@@ -17,18 +17,16 @@ function AdminView({ oprema, deleteOprema, setID }) {
             <table>
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>NAZIV</th>
-                  <th>PROIZVODJAC</th>
+                  <th>PROIZVOĐAČ</th>
                   <th>CENA</th>
-                  <th>OBRISI</th>
+                  <th>OBRIŠI</th>
                   <th>IZMENI</th>
                 </tr>
               </thead>
               <tbody>
                 {oprema.map((o) => (
                   <tr key={o.id}>
-                    <td>{o.id}</td>
                     <td>{o.naziv}</td>
                     <td>{o.proizvodjac}</td>
                     <td>{o.cena}</td>
